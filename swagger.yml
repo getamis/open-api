@@ -193,6 +193,22 @@ paths:
             $ref: '#/definitions/sniCertificate'
         default:
           $ref: '#/responses/error'
+  /sites/{site_id}/ssl/verify_custom_domain:
+    get:
+      operationId: verifyCustomDomain
+      tags: [sniCertificate]
+      parameters:
+        - name: site_id
+          type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/result'
+        default:
+          $ref: '#/responses/error'
   /accounts/{account_id}/env:
     get:
       tags:
@@ -3065,6 +3081,11 @@ definitions:
       expires_at:
         type: string
         format: dateTime
+  result:
+    type: object
+    properties:
+      result:
+        type: boolean
   ticket:
     type: object
     properties:

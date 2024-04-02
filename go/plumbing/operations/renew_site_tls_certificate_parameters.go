@@ -55,7 +55,8 @@ func NewRenewSiteTLSCertificateParamsWithHTTPClient(client *http.Client) *RenewS
 	}
 }
 
-/*RenewSiteTLSCertificateParams contains all the parameters to send to the API endpoint
+/*
+RenewSiteTLSCertificateParams contains all the parameters to send to the API endpoint
 for the renew site TLS certificate operation typically these are written to a http.Request
 */
 type RenewSiteTLSCertificateParams struct {

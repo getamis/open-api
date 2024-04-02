@@ -46,7 +46,8 @@ func NewRenewSiteTLSCertificateOK() *RenewSiteTLSCertificateOK {
 	return &RenewSiteTLSCertificateOK{}
 }
 
-/*RenewSiteTLSCertificateOK handles this case with default header values.
+/*
+RenewSiteTLSCertificateOK handles this case with default header values.
 
 OK
 */
@@ -81,7 +82,8 @@ func NewRenewSiteTLSCertificateDefault(code int) *RenewSiteTLSCertificateDefault
 	}
 }
 
-/*RenewSiteTLSCertificateDefault handles this case with default header values.
+/*
+RenewSiteTLSCertificateDefault handles this case with default header values.
 
 error
 */
