@@ -259,6 +259,8 @@ type ClientService interface {
 
 	UploadDeployFunction(params *UploadDeployFunctionParams, authInfo runtime.ClientAuthInfoWriter) (*UploadDeployFunctionOK, error)
 
+	VerifyCustomDomain(params *VerifyCustomDomainParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyCustomDomainOK, error)
+
 	SetTransport(transport runtime.ClientTransport)
 }
 
@@ -4210,6 +4212,40 @@ func (a *Client) UploadDeployFunction(params *UploadDeployFunctionParams, authIn
 	}
 	// unexpected success response
 	unexpectedSuccess := result.(*UploadDeployFunctionDefault)
+	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
+}
+
+/*
+VerifyCustomDomain verify custom domain API
+*/
+func (a *Client) VerifyCustomDomain(params *VerifyCustomDomainParams, authInfo runtime.ClientAuthInfoWriter) (*VerifyCustomDomainOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewVerifyCustomDomainParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "verifyCustomDomain",
+		Method:             "GET",
+		PathPattern:        "/sites/{site_id}/ssl/verify_custom_domain",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"https"},
+		Params:             params,
+		Reader:             &VerifyCustomDomainReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*VerifyCustomDomainOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	unexpectedSuccess := result.(*VerifyCustomDomainDefault)
 	return nil, runtime.NewAPIError("unexpected success response: content available as default response in error", unexpectedSuccess, unexpectedSuccess.Code())
 }
 
